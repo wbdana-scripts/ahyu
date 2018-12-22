@@ -34,6 +34,9 @@ def loop_update_packages():
             origin = repo.remotes.origin
             origin.pull()
             subprocess.call(['cat', 'PKGBUILD'])
+            response = input("Would you like to update ${}? [Y / n]".format(aur_package))
+            if response == "y" or response == "Y":
+                subprocess.call(['makepkg', '-sirc'])
 
 
 loop_update_packages()
